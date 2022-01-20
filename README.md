@@ -66,128 +66,28 @@ Finalmente se tomarán todos los resultados de la tabla y podremos determinar lo
 
 Para poder replicar el análisis en cualquier computadora con el mismo software, se utilizarán semillas en los métodos y funciones que requieran números aleatorios.
 
----
+## Resultados
 
+Como se muestra en el archivo Jupyter Notebook se hicieron doscientas simulaciones con los siguientes resultados:
 
-Due to the behavior of received Devices from the trade in program, it is believed that we will receive five hundred devices per month, however, in order for the simulation to consider scenarios where sales are slightly lower than planned, it is proposed two hundred simulations where a random number of pieces of the beta function $X \sim Beta(\alpha= 4, \beta = 5)$ with location 400 and scale of 200 (**image 1**). This distribution has the characteristic of having a mean ($\overline{X}$) of 488.03, a median ($\widetilde{X}$) of 488.89 and a standard variation ($\sigma$) of 31.43.
+|Monto vendido|Costo|Margen de ganancia|Piezas vendidas|
+|---|---|---|---|
+|Conteo|200|200|200|
+|Promedio|3 627 224|3 271 229|355 995|
+|Desviación estándar|348 930|317 552|35 017|
+|Valor mínimo|2 776 960|2 506 646|270 314|
+|Percentil 25|3 394 261|3 067 201|333 321|
+|Percentil 50|3 608 312|3 254 833|357 096|
+|Percentil 75|3 864 131|3 471 480|380 254|
+|Valor máximo|4 577 485|4 131 135|446 350|
 
+Con una certeza del 95% los promedio poblacionales (no muestrales como la tabla anterior) son de:
 
+- Piezas recibidas, entre 988.95 y 1 016.09.
+- Monto vendido, entre 3 689 112.74 y 3 590 058.31
 
-<figure><figcaption><b>Image 1.<b> Beta Function for received devices.</figcaption><img src="Image 1.png" alt="Image 1" style="zoom:67%;" /></figure>
+- Costo total, entre 3 236 185.41 y 3 325 409.11
+- Ganancia total, entre 353 184.11 y 364 392.42
 
-Analytics has determined that the equipment reception will have a distribution as indicated in **table 1**. For simulation issues, each received equipment will generate a semi-random number between 0 and 1 to simulate the grade of the device received, only in the event that a unit does not have a price available for grade 3, the price of grade 2 will be taken.
+Si la empresa que vende joyas está dispuesto a ganar el monto promedio como lo indicado arriba, dada la inversión de comprar las piezas y asumir los costos fijos que derriban de ellos podrían optar por la estrategia de vender más barato de lo que compran, sin embargo, si consideran que el margen ganado no amerita el esfuerzo podrían optar por otras alternativas.
 
-**Table 1. Probability of receiving different grade devices.**
-
-| Grading | Probability of being received |
-| ------- | ----------------------------- |
-| Grade 1 | 80.00%                        |
-| Grade 2 | 15.24%                        |
-| Grade 3 | 4.76%                         |
-
-Due to the above, a file containing the probabilities of each device of being acquired by the trade-in program has been restructured, separated into three main columns: Model, grading and probability. The probability has been calculated as follows.
-$$
-p_{model - grade}=p_{model}\cdot p_{grading}
-$$
-An example of the above is the **Galaxy Note 10** model, which in the model mix has a probability of receiving it of 0.6%, this amount would be multiplied by each of the probabilities of each grade of being received (**table 1**).
-$$
-p_{Note10-Grade1}=0.6\% \cdot 80.00\% = 0.4800\%\\
-p_{Note10-Grade2}=0.6\% \cdot 15.24\% = 0.0914\%\\
-p_{Note10-Grade3}=0.6\% \cdot 4.76\% = 0.0286\%
-$$
-With the above we can affirm the following, where:
-
-- $p_{i \alpha}$ is the probability of each model of grade 1 to being traded.  
-
-- $p_{i \beta}$ is the probability of each model of grade 2 to being traded.
-
-- $p_{i\gamma}$ Is the probability of each model of grade 3 to being traded. 
-
-- $n$ is the quantity of models on the list.
-
-$$
-\sum_{i=1}^{n} ( p_{i \alpha} + p_{i \beta} + p_{i \gamma} ) = 1.00
-$$
-
-Since three files have been manipulated, these will be in the annexes, only details of what is contained in each column will be given.
-
-`Probabilities.xlsx` (**table 2**) indicates the probability that a device will be acquired in the trade-in program by model and grading.
-
-**Table 2. Description in Probabilities.xlsx.**
-
-| Column name | Description |
-| ----------- | ----------- |
-| Device name | Model name. |
-| Model Mix | Probability of receiving this model in the trade-in program. |
-| Grade | Model grade. |
-| Probability | Probability of receiving this model with the corresponding grading in the trade-in program. |
-
-`Buying price.xlsx` (**table 3**) indicates the purchase prices by model and grading.
-
-**Table 3. Description in Buying price.xlsx.**
-
-| Column name | Description |
-| ----------- | ----------- |
-| Device name | Model name. |
-| Grading | Model grade. |
-| Buying price | Acquisition price of the model and corresponding grading. |
-
-`Aggregators prices.xlsx` (**table 4**) indicates the prices at which the equipment will be sold, in this specific case it will be considered that 60% of the collected equipment will be sold to the best option, 30% to the second highest bidder and 10 % to the highest bidder.
-
-**Table 4. Aggregators prices.xlsx.**
-| Column name | Description |
-| ----------- | ----------- |
-| Device name | Model name. |
-| Grade | Model grade. |
-| Selling price 1 | Maximum sale price to aggregators for the model and grading indicated. |
-| Selling price 2 | Second highest selling price to aggregators for the model and grading indicated. |
-| Selling price 3 | Third highest selling price to aggregators for the designated model and grading. |
-
-
-
-## Explanation how Monte Carlo method works
-
-This is a non-deterministic method and it is used so that through probabilistic values the unpredictable behavior of reality is simulated with the generation of semi-random numbers.
-
-Although it is true that a greater number of simulations should be more similar to the calculations obtained by deterministic methods, it is precisely with this behavior that extra data such as variability can be obtained and behavior ranges obtained.
-
-For this specific exercise, three simulations will be used in parallel in two hundred different tests. The first will indicate how many pieces will be received, as previously mentioned a beta function will be used, this first number will indicate how many times the second simulation will be executed. The second simulation will determine which device has been received considering a continuous semi-random number between 0 and 1, and with respect to the accumulated function of the different models it will indicate which model and grading it corresponds to.
-
-The third simulation determines to whom the equipment will be sold, the option that pays the best for the device will have a probability of 60%, the second best option will have a probability of 30% and the third option a 10%.
-
-An arithmetic operation will be made of the sale price of each equipment minus the acquisition price and the total will be recorded in a table.
-
-Finally, all the results of the table will be taken and we will be able to determine the descriptive statistics numbers and know the scope of the program under said quantities.
-
-In order to be able to replicate the analysis on any computer with the same software, seeds will be used in the methods and functions that require random numbers.
-
-## Analysis using Python 3.X
-
-### Step 1
-
-
-
-## Annexes
-
-**Annex 1** Creation of **image 1** using python 3.X.
-
-```python
-import numpy as np
-import scipy.stats as st
-import matplotlib.pyplot as plt
-from matplotlib import ticker
-
-x1 = np.arange(400, 601)
-y1 = st.beta(4, 5, loc=400, scale=200).pdf(x1)
-
-fig, ax = plt.subplots(figsize=(6,4))
-plt.style.use('bmh')
-ax.bar(x, y*100, color='grey', width=3)
-ax.set_xlabel('Devices that can be received')
-ax.set_ylabel('Probability of receiving those devices')
-ax.yaxis.set_major_formatter(ticker.PercentFormatter())
-```
-
-
-
-![image-20211209231942028](../../../../../Library/Application Support/typora-user-images/image-20211209231942028.png)
