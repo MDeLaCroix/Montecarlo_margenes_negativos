@@ -19,7 +19,7 @@ Por otro lado se debe considerar que esta empresa tiene una alianza comercial co
 | TDD plata | 20% | (-)5% |
 | TDD oro | 10% | (-)10% |
 
-Por último se compartió el porcentaje de ventas de cada modelo, y se estima que esa razón se mantendrá en los meses siguientes, por lo que se puede considerar como la probabilidad de que cada modelo sea vendida.
+Por último, se compartió el porcentaje de ventas de cada modelo, y se estima que esa razón se mantendrá en los meses siguientes, por lo que se puede considerar como la probabilidad de que cada modelo sea vendida.
 
 Toda esta información está contenida en el archivo _Prices.xlsx_, la primera columna el artículo, la segunda columna el precio de venta, la tercera columna el costo unitario, y la última la probabilidad de que ese modelo sea vendido.
 
