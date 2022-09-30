@@ -52,11 +52,11 @@ Para dar un poco más de profesionalidad al trabajo he optado por mostrar toda e
 
 ## Explicación de cómo funciona el método Monte Carlo
 
-Este es un método no determinista y se utiliza para que a través de valores probabilísticos se simule el comportamiento impredecible de la realidad con la generación de números semialeatorios.
+Este es un método no determinista y se utiliza para que, a través de valores probabilísticos, se simule el comportamiento impredecible de la realidad con la generación de números semialeatorios.
 
 Si bien es cierto que un mayor número de simulaciones deberían ser más parecidos a los cálculos obtenidos por métodos deterministas, es precisamente con este comportamiento con el que se pueden obtener datos extra como la variabilidad y obtener rangos de comportamiento.
 
-Para este ejercicio específico, se utilizarán tres simulaciones en paralelo en doscientas pruebas diferentes. El primero indicará cuantas piezas se recibirán, como se mencionó anteriormente se utilizará una función beta, este primer número indicará cuantas veces se ejecutará la segunda simulación. La segunda simulación determinará qué dispositivo se ha recibido considerando un número semialeatorio continuo entre 0 y 1, y respecto a la función acumulada de los diferentes modelos indicará a qué modelo y gradación corresponde.
+Para este ejercicio específico, se utilizarán tres simulaciones en paralelo en doscientas pruebas diferentes. El primero indicará cuásntas piezas se recibirán, como se mencionó anteriormente se utilizará una función beta, este primer número indicará cuantas veces se ejecutará la segunda simulación. La segunda simulación determinará qué dispositivo se ha recibido considerando un número semialeatorio continuo entre 0 y 1, y respecto a la función acumulada de los diferentes modelos indicará a qué modelo y gradación corresponde.
 
 La tercera simulación determina a quién se venderá el equipo, la opción que mejor pague por el dispositivo tendrá una probabilidad del 60%, la segunda mejor opción tendrá una probabilidad del 30% y la tercera opción un 10%.
 
